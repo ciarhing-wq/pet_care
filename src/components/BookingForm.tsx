@@ -4,6 +4,23 @@ import { FormEvent, useState } from "react";
 
 export function BookingForm() {
   const [message, setMessage] = useState("");
+  const defaultBookingDateTime = new Date();
+  defaultBookingDateTime.setDate(defaultBookingDateTime.getDate() + 1);
+  defaultBookingDateTime.setHours(9, 30, 0, 0);
+  const defaultBookingDateTimeValue = `${defaultBookingDateTime
+    .getFullYear()
+    .toString()}-${(defaultBookingDateTime.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${defaultBookingDateTime
+    .getDate()
+    .toString()
+    .padStart(2, "0")}T${defaultBookingDateTime
+    .getHours()
+    .toString()
+    .padStart(2, "0")}:${defaultBookingDateTime
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,7 +57,11 @@ export function BookingForm() {
         </label>
         <label>
           预约日期
-          <input type="date" name="date" />
+          <input
+            type="datetime-local"
+            name="date"
+            defaultValue={defaultBookingDateTimeValue}
+          />
         </label>
         <label>
           到店时段
