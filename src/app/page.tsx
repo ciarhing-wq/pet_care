@@ -61,6 +61,31 @@ const reviews = [
     copy: "价格提前说清楚，不会临时加项目。打结处理得很细，回家梳毛轻松多了。",
     author: "比熊家长 小许",
   },
+  {
+    rating: 5,
+    copy: "预约时间卡得很准，到店不用久等。洗完香味不冲，抱回家毛摸起来特别顺。",
+    author: "柴犬家长 阿宁",
+  },
+  {
+    rating: 5,
+    copy: "护理师会先问过敏史和脾气，修脚毛也很耐心。胆小狗这次全程都比较稳定。",
+    author: "柯基家长 周先生",
+  },
+  {
+    rating: 5,
+    copy: "长毛猫梳结最怕硬扯，这次处理得很温柔，还教了家里每天怎么分层梳。",
+    author: "布偶家长 米粒",
+  },
+  {
+    rating: 4,
+    copy: "烘干区是独立的，声音没想象中吓人。结束后护理记录写得清楚，值得回购。",
+    author: "雪纳瑞家长 王小姐",
+  },
+  {
+    rating: 5,
+    copy: "老年犬腿脚不太好，店员会扶着洗，休息间隔也安排得很好，家里人很放心。",
+    author: "泰迪家长 林阿姨",
+  },
 ];
 
 export default function Home() {
@@ -239,24 +264,44 @@ export default function Home() {
               <h2>老客人喜欢这里的原因。</h2>
               <p>洗得干净只是基础，更重要的是照顾宠物的情绪和主人的放心感。</p>
             </div>
-            <div className="review-grid">
-              {reviews.map((review) => (
-                <article className="review" key={review.author}>
-                  <div
-                    className="stars"
-                    aria-label={`${review.rating} 星评价`}
-                  >
-                    <span aria-hidden="true">
-                      {"★".repeat(review.rating)}
-                      <span className="stars-muted">
-                        {"☆".repeat(5 - review.rating)}
+            <div className="review-carousel" aria-label="客户评价轮播">
+              <div className="review-track">
+                {reviews.map((review) => (
+                  <article className="review" key={review.author}>
+                    <div
+                      className="stars"
+                      aria-label={`${review.rating} 星评价`}
+                    >
+                      <span aria-hidden="true">
+                        {"★".repeat(review.rating)}
+                        <span className="stars-muted">
+                          {"☆".repeat(5 - review.rating)}
+                        </span>
                       </span>
-                    </span>
-                  </div>
-                  <p>{review.copy}</p>
-                  <strong>{review.author}</strong>
-                </article>
-              ))}
+                    </div>
+                    <p>{review.copy}</p>
+                    <strong>{review.author}</strong>
+                  </article>
+                ))}
+                {reviews.map((review) => (
+                  <article
+                    className="review"
+                    key={`${review.author}-loop`}
+                    aria-hidden="true"
+                  >
+                    <div className="stars">
+                      <span aria-hidden="true">
+                        {"★".repeat(review.rating)}
+                        <span className="stars-muted">
+                          {"☆".repeat(5 - review.rating)}
+                        </span>
+                      </span>
+                    </div>
+                    <p>{review.copy}</p>
+                    <strong>{review.author}</strong>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
