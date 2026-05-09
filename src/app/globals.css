@@ -757,11 +757,13 @@ textarea {
 
 .full {
   grid-column: 1 / -1;
+  gap: 4px;
+  align-content: start;
 }
 
 .full textarea {
-  height: 100%;
-  min-height: 170px;
+  height: 205px;
+  min-height: 205px;
 }
 
 .form-note {
